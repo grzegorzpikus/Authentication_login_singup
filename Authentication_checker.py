@@ -1,9 +1,11 @@
 import csv
 import hashlib as hl
 
+
 def hashing(password):
     password_hash = hl.sha256(str.encode(password)).hexdigest()
     return password_hash
+
 
 def user_exists(user_name):
     """This function checks if user name exists. It returns true if it does,
@@ -14,8 +16,7 @@ def user_exists(user_name):
         for line in csv_reader:
             if line[0] == user_name:
                 return True
-            else:
-                return False
+        return False
 
 
 def password_correct(user_name, password):
@@ -32,19 +33,9 @@ def password_correct(user_name, password):
                     return False
 
 
-def char_num_user(string):
-    """This function checks if user_name is long enough."""
-
-    number = 6
-    if len(string) >= number:
-        return True
-    else:
-        return False
-
-
 def char_num_password(string):
-    """This function checks if user_name is long enough."""
-
+    """This function checks if password is strong enough."""
+    # write more!!!
     number = 10
     if len(string) >= number:
         return True

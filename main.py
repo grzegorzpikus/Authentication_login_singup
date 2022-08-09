@@ -1,5 +1,7 @@
 # shell with while
 from Input_checker import log_in, sing_up
+from Authentication import add_user, create_user_object
+
 
 
 def main():
@@ -12,9 +14,12 @@ def main():
     inp = input()
 
     if inp == '1':
-        log_in()
+        user = log_in()
+        print("here below is a created object after logging-in.")
+        print(create_user_object(user[0]))
     elif inp == '2':
-        sing_up()
+        user_data = sing_up()
+        add_user(user_data)
     elif inp == '3':
         main()
     elif inp == 'exit':
