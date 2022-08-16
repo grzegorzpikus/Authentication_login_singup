@@ -17,6 +17,7 @@ def main():
         user = log_in()
         print("here below is a created object after logging-in.")
         print(create_user_object(user[0]))
+        print(type(create_user_object(user[0]))) # just for checking if a correct calss is used.
     elif inp == '2':
         user_data = sing_up()
         add_user(user_data)

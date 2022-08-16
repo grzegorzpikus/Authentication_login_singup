@@ -102,7 +102,7 @@ def sing_up():
     email = email_fn()
     username = username_fn()
     password = password_fn()
-    return [username, password, name, email]
+    return [username, password, name, email, False]
 
 
 
