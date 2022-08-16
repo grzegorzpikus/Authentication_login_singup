@@ -22,6 +22,3 @@ def create_user_object(user_name):
                 user_object = Uc.User(line[2], line[3], line[0], line[1])
                 return user_object
 
-
-def event_monitoring():
-    pass

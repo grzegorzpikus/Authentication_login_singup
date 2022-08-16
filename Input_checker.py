@@ -56,8 +56,9 @@ def sing_up():
         """The function checks if e-mail of the user is provided correctly."""
 
         inp = input(' Provide your e-mail address: ')
-        if "@cern.ch" not in inp:
-            print(" Wrong format! Try again.")
+        # if "@cern.ch" not in inp:
+        if not inp.endswith("@cern.ch"):
+            print(" Wrong e-mail! Try again.")
             inp = email_fn()
         return inp
 
@@ -67,7 +68,7 @@ def sing_up():
         inp = input(' Provide your username: ')
         # is the username a singe word (no spaces)?
         if len(inp.split()) != 1:
-            print(" No space are allowed, try again")
+            print(" No space is allowed, try again")
             inp = username_fn()
         # does the username name exist in the database?
         if Ac.user_exists(inp) is True:
@@ -79,8 +80,21 @@ def sing_up():
         """The function checks if password of a user is provided correctly."""
         inp = input(' Provide your password: ')
         # checks if the password is strong enough
-        if Ac.char_num_password(inp) is False:
-            print('The password is too short. Provide a different one: ')
+        check_list = Ac.password_strength(inp)
+        if check_list[0] is False:
+            print("Password is too short.")
+            inp = password_fn()
+        if check_list[1] is False:
+            print("Password needs to have at least one lowercase character.")
+            inp = password_fn()
+        if check_list[2] is False:
+            print("Password needs to have at least one uppercase character.")
+            inp = password_fn()
+        if check_list[3] is False:
+            print("Password needs to have at least one number.")
+            inp = password_fn()
+        if check_list[4] is False:
+            print("Password needs to have at least one special character.")
             inp = password_fn()
         return hashing(inp)
 
