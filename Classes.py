@@ -1,3 +1,4 @@
+import database_managment as dbm
 
 
 class User:
@@ -7,9 +8,9 @@ class User:
     def __init__(self, __name, __email, __user_name, __password, admin=0):
         self.__name = __name
         self.__email = __email
-        self.__user_name = __user_name
+        self.user_name = __user_name
         self.__password = __password
-        self.__admin = admin
+        self.admin = admin
 
     def __str__(self):
         """It represents a object as a string if the string is printed."""
@@ -17,7 +18,13 @@ class User:
 
     def __repr__(self):
         """This is a graphical representation of an object"""
-        return f"{self.__user_name}"
+        return f"{self.user_name}"
+
+    def __eq__(self, other):
+        return self.__name == other.__name and self.__email == other.__email \
+               and self.user_name == other.user_name \
+               and self.__password == other.__password \
+               and self.admin == other.admin
 
 
 class Administrator(User):
@@ -25,7 +32,11 @@ class Administrator(User):
     def __init__(self, __name, __email, __user_name, __password, admin=1):
         super().__init__(__name, __email, __user_name, __password, admin)
 
-    # getters and setters have to be added. And only admin can use them!
+    def delete_user(self, selected_user):
+        dbm.sql_delete_user(selected_user)
+
+    def change_user_status(self, selected_user):
+        dbm.sql_change_user_status(selected_user)
 
 
 class Experiment:
